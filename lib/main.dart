@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tour_app/const/app_color.dart';
+import 'package:tour_app/const/app_string.dart';
+import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/views/splash_screen.dart';
 
 void main() {
@@ -16,12 +20,15 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       builder: (context, child) {
-        return MaterialApp(
-          title: 'Flutter Demo',
+        return GetMaterialApp(
+          title: AppString.appName,
           theme: ThemeData(
               primarySwatch: Colors.blue,
               textTheme: GoogleFonts.poppinsTextTheme(
-                  Theme.of(context).textTheme.apply())),
+                  Theme.of(context).textTheme.apply()),
+              scaffoldBackgroundColor: AppColor.scaffoldColor),
+          initialRoute: splash,
+          getPages: getPages,
           home: SplashScreen(),
         );
       },
