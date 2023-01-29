@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:tour_app/const/app_color.dart';
+import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/styles/style.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -80,8 +81,8 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                if (_currentIndex == 2) {
-                                  print("finished");
+                                if (_currentIndex == _title.length - 1) {
+                                  Get.toNamed(signup);
                                 } else {
                                   _currentIndex + 1;
                                 }
@@ -118,11 +119,3 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 }
-
-
-// ElevatedButton(
-//                       onPressed: () {
-//                        
-//                         print(_currentIndex);
-//                       },
-//                       child: Text("Next")),
