@@ -51,7 +51,7 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              VioletBtn('Create Account'),
+              VioletBtn('Login', () {}),
               SizedBox(
                 height: 10.h,
               ),

@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tour_app/const/app_color.dart';
 
 class VioletBtn extends StatelessWidget {
   String title;
-  VioletBtn(this.title);
+  Function onAction;
+  VioletBtn(this.title, this.onAction);
 
   var _value = false.obs;
 
@@ -17,6 +16,7 @@ class VioletBtn extends StatelessWidget {
     return Obx(() => InkWell(
           onTap: () {
             _value.value = true;
+            onAction();
           },
           child: Container(
               height: 48.h,
