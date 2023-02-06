@@ -3,6 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tour_app/ui/views/bottom_nav_controller/pages/nav_add.dart';
+import 'package:tour_app/ui/views/bottom_nav_controller/pages/nav_favourite.dart';
+import 'package:tour_app/ui/views/bottom_nav_controller/pages/nav_home.dart';
 
 import '../../../const/app_string.dart';
 
@@ -12,15 +15,19 @@ class BottomNavController extends StatelessWidget {
   var _currentIndex = 0.obs;
   var _drawer = false.obs;
   var _pages = [
-    Container(
-      color: Colors.black,
-    ),
-    Container(
-      color: Colors.green,
-    ),
-    Container(
-      color: Colors.pink,
-    )
+    // Container(
+    //   color: Colors.black,
+    // ),
+    // Container(
+    //   color: Colors.green,
+    // ),
+    // Container(
+    //   color: Colors.pink,
+    // )
+
+    NavHome(),
+    NavAdd(),
+    NavFavourite()
   ];
 
   @override
