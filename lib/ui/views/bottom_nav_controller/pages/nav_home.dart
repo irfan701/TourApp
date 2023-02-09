@@ -183,7 +183,7 @@ Widget forYou() {
           return Padding(
             padding: EdgeInsets.only(right: 12.w),
             child: InkWell(
-              onTap: () => Get.toNamed(''),
+              onTap: () => Get.toNamed(detailsScreen),
               child: Container(
                 width: 100.w,
                 height: 180.h,

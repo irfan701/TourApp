@@ -24,6 +24,12 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: AppString.appName,
           theme: ThemeData(
+              appBarTheme: AppBarTheme(
+                titleTextStyle: TextStyle(color: Colors.black),
+                iconTheme: IconThemeData(
+                  color: Colors.black,
+                ),
+              ),
               primarySwatch: Colors.blue,
               textTheme: GoogleFonts.poppinsTextTheme(
                   Theme.of(context).textTheme.apply()),

@@ -29,8 +29,18 @@ class DrawerScreen extends StatelessWidget {
             drawerItemWd('Support', () => Get.toNamed(support)),
             drawerItemWd('Privacy', () => Get.toNamed(privacy)),
             drawerItemWd('FAQ', () => Get.toNamed(faq)),
+            drawerItemWd('Rate Us', () => Get.toNamed(rateUs)),
             drawerItemWd('How to use', () => Get.toNamed(howtouse)),
-            drawerItemWd('Settings', () => Get.toNamed(setting)),
+            Expanded(
+              child: SizedBox(),
+            ),
+            InkWell(
+              onTap: () => Get.toNamed(setting),
+              child: Text(
+                "Settings",
+                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w600),
+              ),
+            )
           ],
         ),
       ),
