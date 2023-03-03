@@ -31,4 +31,28 @@ class Auth {
       Fluttertoast.showToast(msg: 'Error is: $e');
     }
   }
+
+  static onLogin(email, pass) async {
+    try {
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: pass);
+      var authCredential = userCredential.user;
+      if (authCredential!.uid.isNotEmpty) {
+        Fluttertoast.showToast(
+          msg: 'Login Successfull',
+        );
+        Get.toNamed(mainHome);
+      } else {
+        print("sign in failed");
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(msg: 'No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(msg: 'Wrong password provided for that user.');
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: 'Error is: $e');
+    }
+  }
 }

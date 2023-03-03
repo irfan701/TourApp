@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tour_app/const/app_color.dart';
+import 'package:tour_app/controllers/auth.dart';
 import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/styles/style.dart';
 import 'package:tour_app/ui/widgets/violet_btn.dart';
@@ -27,16 +28,6 @@ class SignInScreen extends StatelessWidget {
                     fontSize: 36.sp,
                     color: AppColor.violetColor),
               ),
-              // SizedBox(
-              //   height: 12.h,
-              // ),
-              // Text(
-              //   'Create your account and start your journey',
-              //   style: TextStyle(
-              //     fontWeight: FontWeight.w300,
-              //     fontSize: 16.sp,
-              //   ),
-              // ),
               SizedBox(
                 height: 80.h,
               ),
@@ -51,7 +42,9 @@ class SignInScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              VioletBtn('Login', () {}),
+              VioletBtn('Login', () {
+                Auth.onLogin(_email.text, _pass.text);
+              }),
               SizedBox(
                 height: 10.h,
               ),
