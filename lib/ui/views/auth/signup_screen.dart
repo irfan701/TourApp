@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tour_app/const/app_color.dart';
+import 'package:tour_app/controllers/auth.dart';
 import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/styles/style.dart';
 import 'package:tour_app/ui/widgets/violet_btn.dart';
@@ -48,13 +49,15 @@ class SignUpScreen extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   decoration: AppStyle.textFieldDecoration('E-mail Address')),
               TextFormField(
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
+                  controller: _pass,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: AppStyle.textFieldDecoration('Enter Password')),
               SizedBox(
                 height: 40.h,
               ),
-              VioletBtn('Create Account', () => Get.toNamed(userForm)),
+              VioletBtn('Create Account', () {
+                Auth.onRegistration(_email.text, _pass.text);
+              }),
               SizedBox(
                 height: 10.h,
               ),
