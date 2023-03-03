@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tour_app/const/app_color.dart';
 import 'package:tour_app/const/app_string.dart';
 import 'package:tour_app/ui/route/route.dart';
+import 'package:tour_app/ui/theme/app_theme.dart';
 import 'package:tour_app/ui/views/splash_screen.dart';
 
 void main() {
@@ -23,17 +24,9 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: AppString.appName,
-          theme: ThemeData(
-              appBarTheme: AppBarTheme(
-                titleTextStyle: TextStyle(color: Colors.black),
-                iconTheme: IconThemeData(
-                  color: Colors.black,
-                ),
-              ),
-              primarySwatch: Colors.blue,
-              textTheme: GoogleFonts.poppinsTextTheme(
-                  Theme.of(context).textTheme.apply()),
-              scaffoldBackgroundColor: AppColor.scaffoldColor),
+          theme: AppTheme().lightTheme(context),
+          darkTheme: AppTheme().darkTheme(context),
+          //  themeMode: ThemeMode.system,
           initialRoute: splash,
           getPages: getPages,
           home: SplashScreen(),

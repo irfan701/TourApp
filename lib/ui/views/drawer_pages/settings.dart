@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tour_app/ui/theme/app_theme.dart';
 import 'package:tour_app/ui/widgets/drawer_item_widget.dart';
 
 import '../../route/route.dart';
 
 class Settings extends StatelessWidget {
-  var darkMode = false.obs;
+  RxBool darkMode = false.obs;
 
   Future logout(context) async {
     return showDialog(
@@ -80,8 +81,11 @@ class Settings extends StatelessWidget {
                 ),
                 Obx(() => Switch(
                     value: darkMode.value,
-                    onChanged: (value) {
+                    onChanged: (bool value) {
                       darkMode.value = value;
+                      Get.changeTheme(darkMode.value == false
+                          ? AppTheme().lightTheme(context)
+                          : AppTheme().darkTheme(context));
                     }))
               ],
             ),
