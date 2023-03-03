@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tour_app/const/app_color.dart';
 import 'package:tour_app/const/app_string.dart';
+import 'package:tour_app/controllers/app_languages.dart';
 import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/theme/app_theme.dart';
 import 'package:tour_app/ui/views/splash_screen.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: AppString.appName,
+          translations: AppLanguages(),
+          locale: Locale('bn', 'BD'),
+          fallbackLocale: Locale('en', 'US'),
           theme: AppTheme().lightTheme(context),
           darkTheme: AppTheme().darkTheme(context),
           themeMode: ThemeMode.system,

@@ -42,14 +42,14 @@ class Settings extends StatelessWidget {
                 child: Column(
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.updateLocale(Locale('bn', "BD")),
                       child: Text("Bangla"),
                     ),
                     SizedBox(
                       width: 10.w,
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => Get.updateLocale(Locale('en', "US")),
                       child: Text("English"),
                     ),
                   ],
