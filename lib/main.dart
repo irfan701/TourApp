@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           title: AppString.appName,
           theme: AppTheme().lightTheme(context),
           darkTheme: AppTheme().darkTheme(context),
-          //  themeMode: ThemeMode.system,
+          themeMode: ThemeMode.system,
           initialRoute: splash,
           getPages: getPages,
           home: SplashScreen(),

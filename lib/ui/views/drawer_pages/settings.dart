@@ -62,7 +62,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        //  backgroundColor: Colors.white,
         elevation: 0,
         title: Text("Settings"),
       ),
@@ -80,13 +80,14 @@ class Settings extends StatelessWidget {
                       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w400),
                 ),
                 Obx(() => Switch(
-                    value: darkMode.value,
-                    onChanged: (bool value) {
-                      darkMode.value = value;
-                      Get.changeTheme(darkMode.value == false
-                          ? AppTheme().lightTheme(context)
-                          : AppTheme().darkTheme(context));
-                    }))
+                      value: darkMode.value,
+                      onChanged: (bool value) {
+                        darkMode.value = value;
+                        Get.changeTheme(darkMode.value == false
+                            ? AppTheme().lightTheme(context)
+                            : AppTheme().darkTheme(context));
+                      },
+                    ))
               ],
             ),
             SizedBox(
@@ -104,6 +105,11 @@ class Settings extends StatelessWidget {
               "Languages",
               () => changeLanguage(context),
             ),
+            Container(
+              width: 300,
+              height: 100,
+              color: Get.isDarkMode == false ? Colors.yellow : Colors.green,
+            )
           ],
         ),
       ),
