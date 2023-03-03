@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "26360549717",
+    "project_id": "flutter-tour-app-ee7f2",
+    "storage_bucket": "flutter-tour-app-ee7f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26360549717:android:4a0cb828077d0234319fdc",
+        "android_client_info": {
+          "package_name": "com.example.tour_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26360549717-juf17f7k6c9iokpn31q2f1075pfganci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tour_app",
+            "certificate_hash": "9572e0865bb727756d70349900788696287827e6"
+          }
+        },
+        {
+          "client_id": "26360549717-vnskni3uklvddj7ggpfskt25cp1a1t5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANUmg2v1hR9vL2AHgOR7WPbDzg2JUPZEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26360549717-vnskni3uklvddj7ggpfskt25cp1a1t5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

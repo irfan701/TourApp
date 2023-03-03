@@ -9,8 +9,12 @@ import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/theme/app_theme.dart';
 import 'package:tour_app/ui/views/splash_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'package:firebase_core/firebase_core.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
