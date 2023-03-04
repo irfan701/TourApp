@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:tour_app/controllers/auth.dart';
 import 'package:tour_app/ui/route/route.dart';
 
 import '../../const/app_color.dart';
@@ -58,9 +59,9 @@ class UserFormScreen extends StatelessWidget {
           SizedBox(
             height: 50.h,
           ),
-          FormField(_nameController, TextInputType.emailAddress, 'Name'),
-          FormField(_phoneController, TextInputType.emailAddress, 'Number'),
-          FormField(_addressController, TextInputType.emailAddress, 'Address'),
+          FormField(_nameController, TextInputType.name, 'Name'),
+          FormField(_phoneController, TextInputType.phone, 'Number'),
+          FormField(_addressController, TextInputType.streetAddress, 'Address'),
           Obx(
             () => TextFormField(
               controller: _dobController.value,
@@ -89,7 +90,7 @@ class UserFormScreen extends StatelessWidget {
           SizedBox(
             height: 30.h,
           ),
-          VioletBtn('Submit', () => Get.toNamed(privacyPolicy)),
+          VioletBtn('Submit', () {}),
         ]),
       ),
     ));

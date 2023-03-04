@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:tour_app/ui/route/route.dart';
 
 class Auth {
+  final box = GetStorage();
+
   static onRegistration(email, pass) async {
     try {
       var userCredential =
@@ -16,6 +19,7 @@ class Auth {
         Fluttertoast.showToast(
           msg: 'Registration Successfull',
         );
+
         Get.toNamed(userForm);
       } else {
         print("sign up failed");
