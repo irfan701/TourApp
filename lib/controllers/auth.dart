@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:tour_app/controllers/session.dart';
 import 'package:tour_app/ui/route/route.dart';
 
 class Auth {
@@ -19,7 +20,7 @@ class Auth {
         Fluttertoast.showToast(
           msg: 'Registration Successfull',
         );
-
+        Session().setData('uid', authCredential.uid);
         Get.toNamed(userForm);
       } else {
         print("sign up failed");
