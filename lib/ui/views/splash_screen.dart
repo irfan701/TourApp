@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tour_app/controllers/session.dart';
 import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/styles/style.dart';
 
@@ -10,9 +11,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Future chooseScreen() async {
+    var userId = Session().getData('uid');
+    print(userId);
+    if (userId == null) {
+      Get.toNamed(onboarding);
+    } else {
+      Get.toNamed(mainHome);
+    }
+  }
+
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3), () => Get.toNamed(onboarding));
+    Future.delayed(Duration(seconds: 3), () => chooseScreen());
     super.initState();
   }
 
