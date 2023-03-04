@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:tour_app/controllers/auth.dart';
+import 'package:tour_app/controllers/user_form.dart';
 import 'package:tour_app/ui/route/route.dart';
 
 import '../../const/app_color.dart';
@@ -16,6 +17,8 @@ class UserFormScreen extends StatelessWidget {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
   Rx<TextEditingController> _dobController = TextEditingController().obs;
+  String? dob;
+  String gender = "Male";
 
   Rx<DateTime> selectedDate = DateTime.now().obs;
 
@@ -29,6 +32,9 @@ class UserFormScreen extends StatelessWidget {
     if (selected != null && selected != selectedDate) {
       _dobController.value.text =
           "${selected.day}-${selected.month}-${selected.year}";
+      //  _dobController.value.text = dob!;
+      dob = _dobController.value.text;
+      // print(dob);
     }
   }
 
@@ -84,13 +90,25 @@ class UserFormScreen extends StatelessWidget {
             totalSwitches: 2,
             labels: ['Male', 'Female'],
             onToggle: (index) {
+              if (index == 0) {
+                gender = "Male";
+              } else {
+                gender = "Female";
+              }
               print('switched to: $index');
             },
           ),
           SizedBox(
             height: 30.h,
           ),
-          VioletBtn('Submit', () {}),
+          VioletBtn('Submit', () {
+            UserForm().onInsert(
+                _nameController.text,
+                int.parse(_phoneController.text),
+                _addressController.text,
+                dob!,
+                gender);
+          }),
         ]),
       ),
     ));
