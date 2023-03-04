@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:toggle_switch/toggle_switch.dart';
-import 'package:tour_app/ui/views/main_home_screen.dart';
-
-import '../../const/app_color.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../route/route.dart';
-import '../styles/style.dart';
 import '../widgets/violet_btn.dart';
 
 class PrivacyPolicyScreen extends StatelessWidget {
+  PdfViewerController? _PdfViewerController;
+  var _loaded = false.obs;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +18,16 @@ class PrivacyPolicyScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-                child: Container(
-              color: Colors.green,
+                child: SfPdfViewer.network(
+              'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf',
+              scrollDirection: PdfScrollDirection.vertical,
+              onDocumentLoaded: (PdfDocumentLoadedDetails details) {
+                _loaded.value = true;
+              },
             )),
-            VioletBtn('Submit', () => Get.toNamed(mainHome)),
+            Obx(() => _loaded == true
+                ? VioletBtn('Submit', () => Get.toNamed(mainHome))
+                : Text("Still Loading... ... ")),
             SizedBox(
               height: 10.h,
             )

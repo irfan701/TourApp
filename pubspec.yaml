@@ -48,6 +48,7 @@ dependencies:
   cloud_firestore: ^4.4.3
   fluttertoast: ^8.2.1
   get_storage: ^2.1.1
+  syncfusion_flutter_pdfviewer: ^20.4.52
 
 
 dev_dependencies:
