@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:tour_app/controllers/session.dart';
+import 'package:tour_app/controllers/toast.dart';
 import 'package:tour_app/ui/route/route.dart';
 
 class Auth {
@@ -43,9 +44,8 @@ class Auth {
           .signInWithEmailAndPassword(email: email, password: pass);
       var authCredential = userCredential.user;
       if (authCredential!.uid.isNotEmpty) {
-        Fluttertoast.showToast(
-          msg: 'Login Successfull',
-        );
+        Toastify().success('Login Successfull');
+        Session().setData('uid', authCredential.uid);
         Get.toNamed(mainHome);
       } else {
         print("sign in failed");
@@ -58,6 +58,16 @@ class Auth {
       }
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error is: $e');
+    }
+  }
+
+  Future logout() async {
+    try {
+      await FirebaseAuth.instance
+          .signOut()
+          .then((value) => Toastify().success("Logout Successfull"));
+    } catch (e) {
+      Toastify().error('Login Failed ${e}');
     }
   }
 }

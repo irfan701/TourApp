@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tour_app/controllers/auth.dart';
+import 'package:tour_app/controllers/session.dart';
 import 'package:tour_app/ui/theme/app_theme.dart';
 import 'package:tour_app/ui/widgets/drawer_item_widget.dart';
 
@@ -17,14 +19,20 @@ class Settings extends StatelessWidget {
               content: Row(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Auth().logout();
+                      Session().remove('uid');
+                      Get.toNamed(splash);
+                    },
                     child: Text("Yes"),
                   ),
                   SizedBox(
                     width: 10.w,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.back();
+                    },
                     child: Text("No"),
                   ),
                 ],

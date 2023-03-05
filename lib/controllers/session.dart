@@ -10,4 +10,8 @@ class Session {
   getData(key) {
     print(box.read(key));
   }
+
+  remove(key) {
+    box.remove(key);
+  }
 }
