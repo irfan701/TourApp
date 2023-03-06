@@ -6,7 +6,6 @@ import 'package:tour_app/ui/route/route.dart';
 
 class UserForm {
   final _auth = FirebaseAuth.instance;
-
   CollectionReference usersForm =
       FirebaseFirestore.instance.collection('users-form-data');
 
@@ -24,6 +23,34 @@ class UserForm {
       });
     } catch (error) {
       print("Failed to add user: $error");
+    }
+  }
+
+  viewDataByEmail() {
+    return FirebaseFirestore.instance
+        .collection('users-form-data')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .snapshots();
+  }
+
+  Future<void> onUpdateData(name, phone, address, dob, gender) async {
+    try {
+      final _email = _auth.currentUser!.email;
+      var jsonObj = {
+        "name": name,
+        "phone": phone,
+        "address": address,
+        "dob": dob,
+        "gender": gender
+      };
+
+      return usersForm
+          .doc(_email)
+          .update(jsonObj)
+          .then((value) => Toastify().success("User Updated Successfully!"))
+          .then((value) => Get.back());
+    } catch (e) {
+      Toastify().error("Failed to update user: $e");
     }
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:tour_app/controllers/user_form.dart';
 import '../../styles/style.dart';
 import '../../widgets/violet_btn.dart';
 
@@ -14,6 +15,7 @@ class UserProfileScreen extends StatelessWidget {
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
   Rx<TextEditingController> _dobController = TextEditingController().obs;
+  String? dob;
 
   Rx<DateTime> selectedDate = DateTime.now().obs;
   var gender = 'Male';
@@ -28,6 +30,7 @@ class UserProfileScreen extends StatelessWidget {
     if (selected != null && selected != selectedDate) {
       _dobController.value.text =
           "${selected.day}-${selected.month}-${selected.year}";
+      _dobController.value.text = dob!;
     }
   }
 
@@ -80,7 +83,10 @@ class UserProfileScreen extends StatelessWidget {
         SizedBox(
           height: 30.h,
         ),
-        VioletBtn('Update', () {}),
+        VioletBtn('Update', () {
+          UserForm().onUpdateData(_nameController.text, _phoneController.text,
+              _addressController.text, _dobController.value.text, gender);
+        }),
       ]),
     );
   }
@@ -94,10 +100,7 @@ class UserProfileScreen extends StatelessWidget {
           title: Text("Profile"),
         ),
         body: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('users-form-data')
-              .doc(FirebaseAuth.instance.currentUser!.email)
-              .snapshots(),
+          stream: UserForm().viewDataByEmail(),
           builder: (context, snapshot) {
             var data = snapshot.data;
             if (!snapshot.hasData) {
