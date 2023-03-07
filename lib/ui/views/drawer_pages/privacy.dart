@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:tour_app/controllers/privacy.dart';
 
 class Privacy extends StatelessWidget {
   PdfViewerController? _pdfViewerController;
@@ -18,6 +17,7 @@ class Privacy extends StatelessWidget {
   }
 
   CollectionReference usersX = FirebaseFirestore.instance.collection('privacy');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

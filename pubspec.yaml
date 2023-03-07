@@ -49,6 +49,8 @@ dependencies:
   fluttertoast: ^8.2.1
   get_storage: ^2.1.1
   syncfusion_flutter_pdfviewer: ^20.4.52
+  better_player: ^0.0.83
+  launch_review: ^3.0.1
 
 
 dev_dependencies:

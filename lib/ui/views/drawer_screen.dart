@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:launch_review/launch_review.dart';
 import 'package:tour_app/ui/route/route.dart';
 import 'package:tour_app/ui/widgets/drawer_item_widget.dart';
 
@@ -29,7 +30,13 @@ class DrawerScreen extends StatelessWidget {
             drawerItemWd('Support', () => Get.toNamed(support)),
             drawerItemWd('Privacy', () => Get.toNamed(privacy)),
             drawerItemWd('FAQ', () => Get.toNamed(faq)),
-            drawerItemWd('Rate Us', () => Get.toNamed(rateUs)),
+            drawerItemWd(
+              'Rate Us',
+              () => LaunchReview.launch(
+                androidAppId: "com.example.tour_app",
+                iOSAppId: "585027354",
+              ),
+            ),
             drawerItemWd('How to use', () => Get.toNamed(howtouse)),
             Expanded(
               child: SizedBox(),
