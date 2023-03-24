@@ -14,4 +14,20 @@ class AppStyle {
   static InputDecoration textFieldDecoration(hint) => InputDecoration(
       hintText: hint,
       hintStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w400));
+
+  static progressDialog(context) => showDialog(
+        context: context,
+        builder: (_) => Dialog(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(),
+                Text("Processing"),
+              ],
+            ),
+          ),
+        ),
+      );
 }
