@@ -53,4 +53,26 @@ class UserForm {
       Toastify().error("Failed to update user: $e");
     }
   }
+
+  CollectionReference allData =
+      FirebaseFirestore.instance.collection('all-data');
+  Future uploadToDB(
+      owner_name, description, cost, facilities, destination, imageUrls) async {
+    try {
+      allData.doc(_auth.currentUser!.email).collection('images').doc().set({
+        'owner_name': owner_name,
+        'description': description,
+        'cost': cost,
+        'facilities': facilities,
+        'destination': destination,
+        'gallery_image': FieldValue.arrayUnion(imageUrls),
+        // 'gallery_image': imageUrls,
+      }).whenComplete(() {
+        Toastify().success("Uploaded Success");
+        Get.back();
+      });
+    } catch (error) {
+      print("Failed to Upload : $error");
+    }
+  }
 }

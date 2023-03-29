@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           locale: Locale('bn', 'BD'),
           fallbackLocale: Locale('en', 'US'),
           theme: AppTheme().lightTheme(context),
-          darkTheme: AppTheme().darkTheme(context),
+          // darkTheme: AppTheme().darkTheme(context),
           themeMode: ThemeMode.system,
           initialRoute: splash,
           getPages: getPages,

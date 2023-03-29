@@ -53,8 +53,20 @@ List<GetPage> getPages = [
   GetPage(name: setting, page: () => Settings()),
   GetPage(name: howtouse, page: () => HowToUse()),
   GetPage(name: searchscreen, page: () => SearchScreen()),
-  GetPage(name: seeAllScreen, page: () => SeeAllScreen()),
-  GetPage(name: detailsScreen, page: () => DetailsScreen()),
+  GetPage(
+    name: seeAllScreen,
+    page: () {
+      SeeAllScreen _SeeAllScreen = Get.arguments;
+      return _SeeAllScreen;
+    },
+  ),
+  GetPage(
+    name: detailsScreen,
+    page: () {
+      DetailsScreen _detailsScreen = Get.arguments;
+      return _detailsScreen;
+    },
+  ),
   GetPage(name: profileScreen, page: () => UserProfileScreen()),
   GetPage(
       name: navAddLastStep,

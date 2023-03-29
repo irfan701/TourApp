@@ -1,11 +1,18 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tour_app/const/app_string.dart';
+import 'package:tour_app/controllers/toast.dart';
+import 'package:tour_app/controllers/user_form.dart';
+import 'package:tour_app/ui/styles/style.dart';
 import 'package:tour_app/ui/widgets/custom_text_field.dart';
 import 'package:tour_app/ui/widgets/violet_btn.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class NavAddLastStep extends StatefulWidget {
   var name;
@@ -27,19 +34,49 @@ class NavAddLastStep extends StatefulWidget {
 
 class _NavAddLastStepState extends State<NavAddLastStep> {
   TextEditingController _phoneController = TextEditingController();
-
   TextEditingController _dateTimeController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
+  FirebaseStorage storage = FirebaseStorage.instance;
+  var authCredential = FirebaseAuth.instance.currentUser;
 
   // Pick an image
   List<XFile>? multipleImages;
-
   List<String> imageUrls = [];
 
   Future multipleImagePicker() async {
     multipleImages = await _picker.pickMultiImage();
     setState(() {});
+  }
+
+  Future uploadImage() async {
+    try {
+      if (multipleImages != null) {
+        AppStyle.progressDialog(context);
+        for (int i = 0; i < multipleImages!.length; i++) {
+          File imageFile = File(multipleImages![i].path);
+          UploadTask uploadTask = storage
+              .ref(authCredential!.email)
+              .child(multipleImages![i].name)
+              .putFile(imageFile);
+
+          TaskSnapshot snapshot = await uploadTask;
+          String imageURL = await snapshot.ref.getDownloadURL();
+          imageUrls.add(imageURL);
+          //   print(imageURL);
+        }
+        // print(imageUrls);
+        if (imageUrls.isNotEmpty) {
+          UserForm().uploadToDB(widget.name, widget.description, widget.cost,
+              widget.facility, widget.destination, imageUrls);
+        }
+      } else {
+        Toastify().success('Something is wrong.');
+      }
+    } catch (e) {
+      Toastify().success('Failed.');
+      // Get.back();
+    }
   }
 
   @override
@@ -115,7 +152,10 @@ class _NavAddLastStepState extends State<NavAddLastStep> {
                   ),
                   VioletBtn(
                     "Upload",
-                    () {},
+                    () {
+                      uploadImage();
+                      //  Get.back();
+                    },
                   ),
                 ],
               ),

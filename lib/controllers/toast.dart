@@ -3,17 +3,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class Toastify {
   var successColor = Colors.green;
-  var errorColor = Colors.red;
+  var errorColor = Colors.deepOrange;
   var warnColor = Colors.yellow;
 
   mainToast(msg, color) {
     Fluttertoast.showToast(
         msg: msg,
-        gravity: ToastGravity.CENTER,
+        //textColor: Colors.white,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.SNACKBAR,
         timeInSecForIosWeb: 1,
         backgroundColor: color,
-        //textColor: Colors.white,
-        fontSize: 16.0);
+        textColor: Colors.white,
+        fontSize: 13.0);
   }
 
   success(msg) {

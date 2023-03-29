@@ -18,80 +18,82 @@ class SignInScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 30.w, right: 30.w, top: 80.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Login \nTo Your Account',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 36.sp,
-                    color: AppColor.violetColor),
-              ),
-              SizedBox(
-                height: 80.h,
-              ),
-              TextFormField(
-                  controller: _email,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: AppStyle.textFieldDecoration('E-mail Address')),
-              TextFormField(
-                  controller: _pass,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: AppStyle.textFieldDecoration('Enter Password')),
-              SizedBox(
-                height: 40.h,
-              ),
-              VioletBtn('Login', () {
-                Auth.onLogin(_email.text, _pass.text);
-              }),
-              SizedBox(
-                height: 10.h,
-              ),
-              Center(
-                child: Text(
-                  '--OR--',
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Login \nTo Your Account',
                   style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.sp,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 36.sp,
+                      color: AppColor.violetColor),
+                ),
+                SizedBox(
+                  height: 80.h,
+                ),
+                TextFormField(
+                    controller: _email,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: AppStyle.textFieldDecoration('E-mail Address')),
+                TextFormField(
+                    controller: _pass,
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: AppStyle.textFieldDecoration('Enter Password')),
+                SizedBox(
+                  height: 40.h,
+                ),
+                VioletBtn('Login', () {
+                  Auth.onLogin(_email.text, _pass.text);
+                }),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Center(
+                  child: Text(
+                    '--OR--',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.sp,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/icons/fb.png')),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Image.asset('assets/icons/google.png'))
-                ],
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              RichText(
-                  text: TextSpan(
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18.sp,
-                          color: Colors.black),
-                      text: "Don’t have registered yet? ",
-                      children: [
-                    TextSpan(
+                SizedBox(
+                  height: 10.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Image.asset('assets/icons/fb.png')),
+                    IconButton(
+                        onPressed: () {},
+                        icon: Image.asset('assets/icons/google.png'))
+                  ],
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                RichText(
+                    text: TextSpan(
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18.sp,
-                            color: AppColor.violetColor),
-                        text: "Sign Up?",
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.toNamed(signup)),
-                  ]))
-            ],
+                            color: Colors.black),
+                        text: "Don’t have registered yet? ",
+                        children: [
+                      TextSpan(
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.sp,
+                              color: AppColor.violetColor),
+                          text: "Sign Up?",
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Get.toNamed(signup)),
+                    ]))
+              ],
+            ),
           ),
         ),
       ),
